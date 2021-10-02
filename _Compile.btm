@@ -1,0 +1,16 @@
+@echo off
+%gvdUtil%\sys\pskill.exe CuToaster.exe
+
+
+call ..\CreateEXEWrapper %@NAME[%_CWD] "CuToaster.ahk" U64
+
+set _err=
+move CuToaster.exe ..\..\
+set _err=%_err%%?%
+iff "%_err" ne "0" then
+    playsound /s %SystemRoot%\media\ringout.wav
+    echo Error: %_err
+    pause
+else
+    playsound /s %SystemRoot%\media\ding.wav
+endiff
